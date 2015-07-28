@@ -9,6 +9,7 @@
 #import "WorkoutsViewController.h"
 #import "KDWorkout.h"
 #import "KDAddWorkoutViewController.h"
+#import "KDWorkoutDetailViewController.h"
 
 
 @interface WorkoutsViewController ()
@@ -56,6 +57,14 @@
     if (sourceWorkout) {
         [self addWorkout:sourceWorkout];
         [self.tableView reloadData];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showWorkoutDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        KDWorkoutDetailViewController *destinationVC = segue.destinationViewController;
+        destinationVC.workout = [self.workouts objectAtIndex:indexPath.row];
     }
 }
 
