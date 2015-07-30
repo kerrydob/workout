@@ -14,8 +14,6 @@
 
 @interface WorkoutsViewController ()
 
-@property (nonatomic, strong) NSArray *workouts;
-
 @end
 
 @implementation WorkoutsViewController
@@ -24,7 +22,6 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.workouts = [[NSArray alloc] init];
     [self loadInitialData];
 }
 
@@ -34,11 +31,35 @@
 }
 
 - (void)loadInitialData {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:[THE_DELEGATE managedObjectContext]];
-    [fetchRequest setEntity:entity];
+    
+    // Get a handle to fetchedResultsController and call
+    // performFetch to retrieve the first batch of data
     NSError *error;
-    self.workouts = [[THE_DELEGATE managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);
+    }
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (!_fetchedResultsController) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:[THE_DELEGATE managedObjectContext]];
+        [fetchRequest setEntity:entity];
+        
+        // Need to set a sort descriptor on the fetch request
+        // any time we use an NSFetchedResultsController
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+        
+        [fetchRequest setFetchBatchSize:20];
+        
+        NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[THE_DELEGATE managedObjectContext] sectionNameKeyPath:nil cacheName:@"Root"];
+        self.fetchedResultsController = theFetchedResultsController;
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
 }
 
 #pragma mark - Segues
@@ -47,7 +68,7 @@
     Workout *sourceWorkout = source.workout;
     if (sourceWorkout) {
         // add workout to workouts
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }
 }
 
@@ -55,7 +76,7 @@
     if ([segue.identifier isEqualToString:@"showWorkoutDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         KDWorkoutDetailViewController *destinationVC = segue.destinationViewController;
-        destinationVC.workout = [self.workouts objectAtIndex:indexPath.row];
+        destinationVC.workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
 }
 
@@ -65,19 +86,81 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.workouts count];
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
-    Workout *workout = [self.workouts objectAtIndex:indexPath.row];
-    cell.textLabel.text = workout.name;
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Workout *workout = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = workout.name;
 }
 
 #pragma  mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+#pragma mark - NSFetchedResultsController
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
+
 
 @end
