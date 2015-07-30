@@ -8,6 +8,7 @@
 
 #import "KDWorkoutDetailViewController.h"
 #import "KDExercise.h"
+#import "KDAddExerciseViewController.h"
 
 @interface KDWorkoutDetailViewController ()
 
@@ -43,6 +44,15 @@
     [self.workout addExercise:exercise3];
 }
 
+- (IBAction)unwindToWorkout:(UIStoryboardSegue *)segue {
+    KDAddExerciseViewController *source = [segue sourceViewController];
+    KDExercise *sourceExercise = source.exercise;
+    if (sourceExercise) {
+        [self.workout addExercise:sourceExercise];
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -56,7 +66,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExerciseCell" forIndexPath:indexPath];
     KDExercise *exercise = [self.workout.exercises objectAtIndex:indexPath.row];
     cell.textLabel.text = exercise.exerciseName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d reps", exercise.numberOfReps];
+    if (exercise.numberOfReps == 1) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d rep", exercise.numberOfReps];
+    } else {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d reps", exercise.numberOfReps];
+    }
     return cell;
 }
 

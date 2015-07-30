@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F555E6DF1B6A6A3E00B51EA0 /* KDExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6DE1B6A6A3E00B51EA0 /* KDExercise.m */; };
+		F555E6E31B6A73F000B51EA0 /* KDAddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6E21B6A73F000B51EA0 /* KDAddExerciseViewController.m */; };
 		F59AE6531B66C45F00CBB595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6521B66C45F00CBB595 /* main.m */; };
 		F59AE6561B66C45F00CBB595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6551B66C45F00CBB595 /* AppDelegate.m */; };
 		F59AE6591B66C45F00CBB595 /* WorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6581B66C45F00CBB595 /* WorkoutsViewController.m */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		F555E6DD1B6A6A3E00B51EA0 /* KDExercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDExercise.h; sourceTree = "<group>"; };
 		F555E6DE1B6A6A3E00B51EA0 /* KDExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDExercise.m; sourceTree = "<group>"; };
+		F555E6E11B6A73F000B51EA0 /* KDAddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDAddExerciseViewController.h; sourceTree = "<group>"; };
+		F555E6E21B6A73F000B51EA0 /* KDAddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDAddExerciseViewController.m; sourceTree = "<group>"; };
 		F59AE64D1B66C45F00CBB595 /* Workout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59AE6511B66C45F00CBB595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F59AE6521B66C45F00CBB595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				F59AE67D1B67C73B00CBB595 /* KDAddWorkoutViewController.m */,
 				F5E72A181B6804F1006B6163 /* KDWorkoutDetailViewController.h */,
 				F5E72A191B6804F1006B6163 /* KDWorkoutDetailViewController.m */,
+				F555E6E11B6A73F000B51EA0 /* KDAddExerciseViewController.h */,
+				F555E6E21B6A73F000B51EA0 /* KDAddExerciseViewController.m */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F555E6E31B6A73F000B51EA0 /* KDAddExerciseViewController.m in Sources */,
 				F59AE65C1B66C45F00CBB595 /* SecondViewController.m in Sources */,
 				F59AE67E1B67C73B00CBB595 /* KDAddWorkoutViewController.m in Sources */,
 				F59AE6561B66C45F00CBB595 /* AppDelegate.m in Sources */,

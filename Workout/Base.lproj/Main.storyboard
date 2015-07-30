@@ -143,6 +143,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Workout Detail" id="jNW-u2-UXl">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Jjc-h6-fsx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jk9-de-Nyy">
+                            <connections>
+                                <segue destination="na7-Ts-hxZ" kind="presentation" id="KFn-eF-izv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="nTL-sV-Y9o" id="9Qr-aL-fyX"/>
@@ -150,7 +155,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6a-3P-MLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2650" y="-306"/>
+            <point key="canvasLocation" x="2358" y="-320"/>
+        </scene>
+        <!--Add Exercise-->
+        <scene sceneID="AR0-Kg-ig8">
+            <objects>
+                <viewController id="Fgy-Z2-22d" customClass="KDAddExerciseViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lmu-nO-Ah4"/>
+                        <viewControllerLayoutGuide type="bottom" id="sLd-Ts-m4n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="81e-0C-Pdj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exercise Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-mV-amy">
+                                <rect key="frame" x="16" y="285" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of Reps" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-9g-532">
+                                <rect key="frame" x="244.5" y="358" width="112.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="fhO-mV-amy" secondAttribute="centerY" id="2qv-od-yuP"/>
+                            <constraint firstItem="Ddu-9g-532" firstAttribute="top" secondItem="fhO-mV-amy" secondAttribute="bottom" constant="43" id="bJs-mN-iOy"/>
+                            <constraint firstAttribute="centerX" secondItem="fhO-mV-amy" secondAttribute="centerX" id="gMm-hM-cVd"/>
+                            <constraint firstItem="fhO-mV-amy" firstAttribute="trailing" secondItem="81e-0C-Pdj" secondAttribute="trailingMargin" id="q7H-rS-dyp"/>
+                            <constraint firstItem="fhO-mV-amy" firstAttribute="leading" secondItem="81e-0C-Pdj" secondAttribute="leadingMargin" id="vw4-p1-kch"/>
+                            <constraint firstAttribute="centerX" secondItem="Ddu-9g-532" secondAttribute="centerX" id="zC0-j1-yem"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Exercise" id="KHD-Kg-KFD">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="nJr-DK-ip7">
+                            <connections>
+                                <segue destination="OJb-t7-NZ5" kind="unwind" unwindAction="unwindToWorkout:" id="Bnn-ll-JwJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pET-tI-hoS">
+                            <connections>
+                                <segue destination="OJb-t7-NZ5" kind="unwind" unwindAction="unwindToWorkout:" id="d4h-sQ-wja"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="exerciseName" destination="fhO-mV-amy" id="0Ei-0R-Cii"/>
+                        <outlet property="repNumber" destination="Ddu-9g-532" id="4KJ-sd-SUB"/>
+                        <outlet property="saveButton" destination="pET-tI-hoS" id="iEY-gu-td3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xmG-so-0Ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="OJb-t7-NZ5" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4070" y="-320"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -247,6 +309,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Quu-Vn-msN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840" y="-1232"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7yR-GJ-s2G">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="na7-Ts-hxZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mJf-N1-UUV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Fgy-Z2-22d" kind="relationship" relationship="rootViewController" id="q96-p4-CVX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdu-In-MaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3258" y="-320"/>
         </scene>
     </scenes>
     <resources>

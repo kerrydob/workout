@@ -14,5 +14,6 @@
 @property KDWorkout *workout;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)unwindToWorkout:(UIStoryboardSegue *)segue;
 
 @end
