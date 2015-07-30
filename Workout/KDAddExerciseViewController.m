@@ -34,12 +34,12 @@
     if (sender != self.saveButton) return;
         
     if (self.exerciseName.text.length > 0) {
-        self.exercise = [[KDExercise alloc] init];
-        self.exercise.exerciseName = self.exerciseName.text;
+        self.exercise = [[Exercise alloc] init];
+        self.exercise.name = self.exerciseName.text;
         if (self.repNumber.text.length > 0) {
-            self.exercise.numberOfReps = self.repNumber.text.intValue;
+            self.exercise.reps = [NSNumber numberWithInt:self.repNumber.text.intValue];
         } else {
-            self.exercise.numberOfReps = 0;
+            self.exercise.reps = [NSNumber numberWithInt:0];
         }
     }
 }

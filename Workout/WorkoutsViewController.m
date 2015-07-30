@@ -7,14 +7,14 @@
 //
 
 #import "WorkoutsViewController.h"
-#import "KDWorkout.h"
 #import "KDAddWorkoutViewController.h"
 #import "KDWorkoutDetailViewController.h"
+#import "Workout.h"
 
 
 @interface WorkoutsViewController ()
 
-@property NSMutableArray *workouts;
+@property (nonatomic, strong) NSArray *workouts;
 
 @end
 
@@ -24,7 +24,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.workouts = [[NSMutableArray alloc] init];
+    self.workouts = [[NSArray alloc] init];
     [self loadInitialData];
 }
 
@@ -34,29 +34,19 @@
 }
 
 - (void)loadInitialData {
-    KDWorkout *workout1 = [[KDWorkout alloc] init];
-    workout1.workoutName = @"Workout 1";
-    [self.workouts addObject:workout1];
-    KDWorkout *workout2 = [[KDWorkout alloc] init];
-    workout2.workoutName = @"Workout 2";
-    [self.workouts addObject:workout2];
-    KDWorkout *workout3 = [[KDWorkout alloc] init];
-    workout3.workoutName = @"Workout 3";
-    [self.workouts addObject:workout3];
-}
-
-- (void)addWorkout:(KDWorkout *)newWorkout {
-    if (newWorkout) {
-        [self.workouts addObject:newWorkout];
-    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:[THE_DELEGATE managedObjectContext]];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    self.workouts = [[THE_DELEGATE managedObjectContext] executeFetchRequest:fetchRequest error:&error];
 }
 
 #pragma mark - Segues
 - (IBAction)unwindToWorkouts:(UIStoryboardSegue *)segue {
     KDAddWorkoutViewController *source = [segue sourceViewController];
-    KDWorkout *sourceWorkout = source.workout;
+    Workout *sourceWorkout = source.workout;
     if (sourceWorkout) {
-        [self addWorkout:sourceWorkout];
+        // add workout to workouts
         [self.tableView reloadData];
     }
 }
@@ -80,8 +70,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
-    KDWorkout *workout = [self.workouts objectAtIndex:indexPath.row];
-    cell.textLabel.text = workout.workoutName;
+    Workout *workout = [self.workouts objectAtIndex:indexPath.row];
+    cell.textLabel.text = workout.name;
     return cell;
 }
 

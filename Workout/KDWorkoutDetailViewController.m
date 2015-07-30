@@ -7,7 +7,7 @@
 //
 
 #import "KDWorkoutDetailViewController.h"
-#import "KDExercise.h"
+#import "Exercise.h"
 #import "KDAddExerciseViewController.h"
 
 @interface KDWorkoutDetailViewController ()
@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.workout.workoutName;
+    self.navigationItem.title = self.workout.name;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self loadInitialData];
@@ -30,26 +30,16 @@
 }
 
 - (void)loadInitialData {
-    KDExercise *exercise1 = [[KDExercise alloc] init];
-    exercise1.exerciseName = @"Exercise 1";
-    exercise1.numberOfReps = 6;
-    [self.workout addExercise:exercise1];
-    KDExercise *exercise2 = [[KDExercise alloc] init];
-    exercise2.exerciseName = @"Exercise 2";
-    exercise2.numberOfReps = 2;
-    [self.workout addExercise:exercise2];
-    KDExercise *exercise3 = [[KDExercise alloc] init];
-    exercise3.exerciseName = @"Exercise 3";
-    exercise3.numberOfReps = 50;
-    [self.workout addExercise:exercise3];
+    
+    
 }
 
 - (IBAction)unwindToWorkout:(UIStoryboardSegue *)segue {
     KDAddExerciseViewController *source = [segue sourceViewController];
-    KDExercise *sourceExercise = source.exercise;
+    Exercise *sourceExercise = source.exercise;
     if (sourceExercise) {
-        [self.workout addExercise:sourceExercise];
-        [self.tableView reloadData];
+//        [self.workout addExercise:sourceExercise];
+//        [self.tableView reloadData];
     }
 }
 
@@ -64,12 +54,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExerciseCell" forIndexPath:indexPath];
-    KDExercise *exercise = [self.workout.exercises objectAtIndex:indexPath.row];
-    cell.textLabel.text = exercise.exerciseName;
-    if (exercise.numberOfReps == 1) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d rep", exercise.numberOfReps];
+    Exercise *exercise = [self.workout.exercises objectAtIndex:indexPath.row];
+    cell.textLabel.text = exercise.name;
+    if ([exercise.reps isEqualToNumber:[NSNumber numberWithInt:1]]) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d rep", exercise.reps.intValue];
     } else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d reps", exercise.numberOfReps];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d reps", exercise.reps.intValue];
     }
     return cell;
 }

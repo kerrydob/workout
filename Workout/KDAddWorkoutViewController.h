@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KDWorkout.h"
+#import "Workout.h"
 
 @interface KDAddWorkoutViewController : UIViewController
 
-@property KDWorkout *workout;
+@property (nonatomic, strong) Workout *workout;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 

@@ -1,0 +1,19 @@
+//
+//  Workout-Prefix.pch
+//  Workout
+//
+//  Created by Kerry Dobmeier on 7/30/15.
+//  Copyright (c) 2015 Keniz. All rights reserved.
+//
+
+#ifndef Workout_Workout_Prefix_pch
+#define Workout_Workout_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+#import <CoreData/CoreData.h>
+#define THE_DELEGATE (AppDelegate*)[[UIApplication sharedApplication] delegate]
+#endif
+
+#endif

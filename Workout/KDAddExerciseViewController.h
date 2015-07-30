@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KDExercise.h"
+#import "Exercise.h"
 
 @interface KDAddExerciseViewController : UIViewController <UITextFieldDelegate>
 
-@property KDExercise *exercise;
+@property Exercise *exercise;
 @property (weak, nonatomic) IBOutlet UITextField *exerciseName;
 @property (weak, nonatomic) IBOutlet UITextField *repNumber;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;

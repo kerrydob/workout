@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KDWorkout.h"
+#import "Workout.h"
 
 @interface KDWorkoutDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property KDWorkout *workout;
+@property Workout *workout;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)unwindToWorkout:(UIStoryboardSegue *)segue;

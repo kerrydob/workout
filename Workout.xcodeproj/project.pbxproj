@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		F555E6DF1B6A6A3E00B51EA0 /* KDExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6DE1B6A6A3E00B51EA0 /* KDExercise.m */; };
 		F555E6E31B6A73F000B51EA0 /* KDAddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6E21B6A73F000B51EA0 /* KDAddExerciseViewController.m */; };
+		F555E6E51B6A841400B51EA0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F555E6E41B6A841400B51EA0 /* CoreData.framework */; };
+		F555E6E91B6A854B00B51EA0 /* WorkoutModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F555E6E71B6A854B00B51EA0 /* WorkoutModel.xcdatamodeld */; };
+		F555E6EC1B6AA70300B51EA0 /* Exercise.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6EB1B6AA70300B51EA0 /* Exercise.m */; };
+		F555E6F21B6AB6A300B51EA0 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = F555E6F11B6AB6A300B51EA0 /* Workout.m */; };
 		F59AE6531B66C45F00CBB595 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6521B66C45F00CBB595 /* main.m */; };
 		F59AE6561B66C45F00CBB595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6551B66C45F00CBB595 /* AppDelegate.m */; };
 		F59AE6591B66C45F00CBB595 /* WorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F59AE6581B66C45F00CBB595 /* WorkoutsViewController.m */; };
@@ -37,6 +41,13 @@
 		F555E6DE1B6A6A3E00B51EA0 /* KDExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDExercise.m; sourceTree = "<group>"; };
 		F555E6E11B6A73F000B51EA0 /* KDAddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDAddExerciseViewController.h; sourceTree = "<group>"; };
 		F555E6E21B6A73F000B51EA0 /* KDAddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDAddExerciseViewController.m; sourceTree = "<group>"; };
+		F555E6E41B6A841400B51EA0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F555E6E61B6A847900B51EA0 /* Workout-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Workout-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		F555E6E81B6A854B00B51EA0 /* WorkoutModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutModel.xcdatamodel; sourceTree = "<group>"; };
+		F555E6EA1B6AA70300B51EA0 /* Exercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercise.h; sourceTree = "<group>"; };
+		F555E6EB1B6AA70300B51EA0 /* Exercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercise.m; sourceTree = "<group>"; };
+		F555E6F01B6AB6A300B51EA0 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
+		F555E6F11B6AB6A300B51EA0 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
 		F59AE64D1B66C45F00CBB595 /* Workout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59AE6511B66C45F00CBB595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F59AE6521B66C45F00CBB595 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F555E6E51B6A841400B51EA0 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +104,7 @@
 		F59AE6441B66C45F00CBB595 = {
 			isa = PBXGroup;
 			children = (
+				F555E6E41B6A841400B51EA0 /* CoreData.framework */,
 				F59AE64F1B66C45F00CBB595 /* Workout */,
 				F59AE66C1B66C45F00CBB595 /* WorkoutTests */,
 				F59AE64E1B66C45F00CBB595 /* Products */,
@@ -134,6 +147,12 @@
 		F59AE6501B66C45F00CBB595 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F555E6E61B6A847900B51EA0 /* Workout-Prefix.pch */,
+				F555E6F01B6AB6A300B51EA0 /* Workout.h */,
+				F555E6F11B6AB6A300B51EA0 /* Workout.m */,
+				F555E6E71B6A854B00B51EA0 /* WorkoutModel.xcdatamodeld */,
+				F555E6EA1B6AA70300B51EA0 /* Exercise.h */,
+				F555E6EB1B6AA70300B51EA0 /* Exercise.m */,
 				F59AE6511B66C45F00CBB595 /* Info.plist */,
 				F59AE6521B66C45F00CBB595 /* main.m */,
 			);
@@ -258,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F555E6E31B6A73F000B51EA0 /* KDAddExerciseViewController.m in Sources */,
+				F555E6E91B6A854B00B51EA0 /* WorkoutModel.xcdatamodeld in Sources */,
 				F59AE65C1B66C45F00CBB595 /* SecondViewController.m in Sources */,
 				F59AE67E1B67C73B00CBB595 /* KDAddWorkoutViewController.m in Sources */,
 				F59AE6561B66C45F00CBB595 /* AppDelegate.m in Sources */,
@@ -266,6 +286,8 @@
 				F5E72A1A1B6804F1006B6163 /* KDWorkoutDetailViewController.m in Sources */,
 				F555E6DF1B6A6A3E00B51EA0 /* KDExercise.m in Sources */,
 				F59AE6531B66C45F00CBB595 /* main.m in Sources */,
+				F555E6EC1B6AA70300B51EA0 /* Exercise.m in Sources */,
+				F555E6F21B6AB6A300B51EA0 /* Workout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "Workout-Prefix.pch";
 				INFOPLIST_FILE = Workout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -403,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "Workout-Prefix.pch";
 				INFOPLIST_FILE = Workout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -474,6 +498,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F555E6E71B6A854B00B51EA0 /* WorkoutModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F555E6E81B6A854B00B51EA0 /* WorkoutModel.xcdatamodel */,
+			);
+			currentVersion = F555E6E81B6A854B00B51EA0 /* WorkoutModel.xcdatamodel */;
+			path = WorkoutModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F59AE6451B66C45F00CBB595 /* Project object */;
 }
