@@ -7,6 +7,7 @@
 //
 
 #import "KDWorkoutDetailViewController.h"
+#import "KDExercise.h"
 
 @interface KDWorkoutDetailViewController ()
 
@@ -16,14 +17,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.workoutNameLabel.text = self.workout.workoutName;
     self.navigationItem.title = self.workout.workoutName;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self loadInitialData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadInitialData {
+    KDExercise *exercise1 = [[KDExercise alloc] init];
+    exercise1.exerciseName = @"Exercise 1";
+    exercise1.numberOfReps = 6;
+    [self.workout addExercise:exercise1];
+    KDExercise *exercise2 = [[KDExercise alloc] init];
+    exercise2.exerciseName = @"Exercise 2";
+    exercise2.numberOfReps = 2;
+    [self.workout addExercise:exercise2];
+    KDExercise *exercise3 = [[KDExercise alloc] init];
+    exercise3.exerciseName = @"Exercise 3";
+    exercise3.numberOfReps = 50;
+    [self.workout addExercise:exercise3];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.workout.exercises count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExerciseCell" forIndexPath:indexPath];
+    KDExercise *exercise = [self.workout.exercises objectAtIndex:indexPath.row];
+    cell.textLabel.text = exercise.exerciseName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d reps", exercise.numberOfReps];
+    return cell;
+}
+
+#pragma  mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end

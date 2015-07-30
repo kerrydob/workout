@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KDExercise.h"
 
 @interface KDWorkout : NSObject
 
 @property NSString *workoutName;
 @property (readonly) NSDate *creationDate;
+@property (nonatomic, strong) NSMutableArray *exercises;
+
+- (void)addExercise:(KDExercise *)newExercise;
 
 @end

@@ -10,4 +10,17 @@
 
 @implementation KDWorkout
 
+- (NSMutableArray *)exercises {
+    if (!_exercises) {
+        _exercises = [[NSMutableArray alloc] init];
+    }
+    return _exercises;
+}
+
+- (void)addExercise:(KDExercise *)newExercise {
+    if (newExercise) {
+        [self.exercises addObject:newExercise];
+    }
+}
+
 @end

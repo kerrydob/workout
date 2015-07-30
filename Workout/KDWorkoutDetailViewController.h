@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "KDWorkout.h"
 
-@interface KDWorkoutDetailViewController : UIViewController
+@interface KDWorkoutDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property KDWorkout *workout;
-@property (weak, nonatomic) IBOutlet UILabel *workoutNameLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
