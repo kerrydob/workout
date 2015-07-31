@@ -7,6 +7,7 @@
 //
 
 #import "KDAddExerciseViewController.h"
+#import "AppDelegate.h"
 
 @interface KDAddExerciseViewController ()
 
@@ -34,7 +35,7 @@
     if (sender != self.saveButton) return;
         
     if (self.exerciseName.text.length > 0) {
-        self.exercise = [[Exercise alloc] init];
+        self.exercise = [NSEntityDescription insertNewObjectForEntityForName:@"Exercise" inManagedObjectContext:[THE_DELEGATE managedObjectContext]];
         self.exercise.name = self.exerciseName.text;
         if (self.repNumber.text.length > 0) {
             self.exercise.reps = [NSNumber numberWithInt:self.repNumber.text.intValue];

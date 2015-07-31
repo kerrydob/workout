@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Workout.h"
+#import "AppDelegate.h"
 
-@interface KDWorkoutDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface KDWorkoutDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property Workout *workout;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)unwindToWorkout:(UIStoryboardSegue *)segue;

@@ -62,13 +62,12 @@
     return _fetchedResultsController;
 }
 
-#pragma mark - Segues
+#pragma mark - Navigation
 - (IBAction)unwindToWorkouts:(UIStoryboardSegue *)segue {
     KDAddWorkoutViewController *source = [segue sourceViewController];
     Workout *sourceWorkout = source.workout;
     if (sourceWorkout) {
-        // add workout to workouts
-        //[self.tableView reloadData];
+        [THE_DELEGATE saveContext];
     }
 }
 
@@ -152,6 +151,10 @@
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeMove:
+            break;
+        case NSFetchedResultsChangeUpdate:
             break;
     }
 }
