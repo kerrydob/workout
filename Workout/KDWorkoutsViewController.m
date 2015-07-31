@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Keniz. All rights reserved.
 //
 
-#import "WorkoutsViewController.h"
+#import "KDWorkoutsViewController.h"
 #import "KDAddWorkoutViewController.h"
 #import "KDWorkoutDetailViewController.h"
 #import "Workout.h"
 
 
-@interface WorkoutsViewController ()
+@interface KDWorkoutsViewController ()
 
 @end
 
-@implementation WorkoutsViewController
+@implementation KDWorkoutsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
